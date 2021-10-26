@@ -27,7 +27,7 @@ std::vector<std::string> filesInDir(const std::string &directory)
 
 int main(int argc, char const *argv[])
 {
-    auto ls = filesInDir("../src_funs/");
+    auto ls = filesInDir("../src_funs");
     for (const auto &file : ls)
         std::cout << file << std::endl;
     return 0;
