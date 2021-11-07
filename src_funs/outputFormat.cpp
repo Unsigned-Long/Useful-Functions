@@ -9,7 +9,7 @@
  * \param symbol the char type to construct the lin
  * \param os the output stream type
  */
-void outputFormat(const std::string &str, bool ceil = false, bool floor = true,
+void output(const std::string &str, bool ceil = false, bool floor = true,
                   char symbol = '-', std::ostream &os = std::cout)
 {
     if (ceil)
@@ -22,7 +22,7 @@ void outputFormat(const std::string &str, bool ceil = false, bool floor = true,
 
 int main(int argc, char const *argv[])
 {
-    outputFormat("Hello, world!", true, true);
-    outputFormat("Hey, man!", false, true, '+');
+    output("Hello, world!", true, true);
+    output("Hey, man!", false, true, '+');
     return 0;
 }

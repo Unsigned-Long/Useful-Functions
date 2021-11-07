@@ -28,7 +28,7 @@ std::vector<std::string> split(const std::string &str, char splitor, bool ignore
 
 int main(int argc, char const *argv[])
 {
-    auto vec = split(":12:353:4564:456:", ':', true);
+    auto vec = split("gfc    0    0      1.000000000000E+00", ' ', true);
     for (const auto &elem : vec)
         std::cout << elem << std::endl;
     return 0;
