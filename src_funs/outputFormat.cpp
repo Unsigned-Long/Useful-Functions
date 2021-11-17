@@ -10,7 +10,7 @@
  * \param os the output stream type
  */
 void output(const std::string &str, bool ceil = false, bool floor = true,
-                  char symbol = '-', std::ostream &os = std::cout)
+            char symbol = '-', std::ostream &os = std::cout)
 {
     if (ceil)
         os << std::string(str.length(), symbol) << std::endl;

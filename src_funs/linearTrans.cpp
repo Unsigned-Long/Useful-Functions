@@ -7,6 +7,7 @@
  * \param srcMax the upper boundary of the source value range
  * \param dstMin the lower boundary of the target value range
  * \param dstMax the upper boundary of the target value range
+ * \return the function to project input value
  */
 
 template <typename _Ty>

@@ -2,12 +2,11 @@
 #include <vector>
 #include <fstream>
 
-
 /**
  * \brief a function to get all the filenames in the directory
  * \param directory the directory 
  * \return the file names in the directory
- */ 
+ */
 std::vector<std::string> filesInDir(const std::string &directory)
 {
     std::string command = "ls " + directory + "> ./.files.txt";
