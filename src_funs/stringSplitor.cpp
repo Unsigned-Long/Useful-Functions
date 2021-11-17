@@ -8,6 +8,7 @@
  * \param str the string to be splited
  * \param splitor the splitor char
  * \param ignoreEmpty whether ignoring the empty string element or not
+ * \return the splited string vector
  */
 std::vector<std::string> split(const std::string &str, char splitor, bool ignoreEmpty = true)
 {

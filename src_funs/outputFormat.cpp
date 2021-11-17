@@ -8,6 +8,7 @@
  * \param floor whether output the floor line or not
  * \param symbol the char type to construct the lin
  * \param os the output stream type
+ * \return void
  */
 void output(const std::string &str, bool ceil = false, bool floor = true,
             char symbol = '-', std::ostream &os = std::cout)
