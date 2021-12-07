@@ -15,9 +15,7 @@ std::vector<std::string> filesInDir(const std::string &directory)
     std::string filename;
     std::vector<std::string> filenames;
     while (std::getline(file, filename))
-    {
         filenames.push_back(directory + '/' + filename);
-    }
     file.close();
     command = "rm ./.files.txt";
     re = std::system(command.c_str());
