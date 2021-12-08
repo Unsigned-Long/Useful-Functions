@@ -10,7 +10,13 @@
  * @param prec the specified number of reserved digits 
  * @return std::string 
  */
-std::string val2String(const float &val, std::size_t prec = 3)
+std::string formatFloatVal(const float &val, std::size_t prec = 3)
+{
+    std::stringstream stream;
+    stream << std::setiosflags(std::ios::fixed) << std::setprecision(prec) << val;
+    return stream.str();
+}
+std::string formatDoubleVal(const double &val, std::size_t prec = 3)
 {
     std::stringstream stream;
     stream << std::setiosflags(std::ios::fixed) << std::setprecision(prec) << val;
@@ -19,6 +25,7 @@ std::string val2String(const float &val, std::size_t prec = 3)
 
 int main(int argc, char const *argv[])
 {
-    std::cout << val2String(3.1415926535) << std::endl;
+    std::cout << formatFloatVal(3.1415926535) << std::endl;
+    std::cout << formatDoubleVal(3.1415926535) << std::endl;
     return 0;
 }
