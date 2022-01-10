@@ -214,6 +214,21 @@ std::ostream &multiOutput(std::ostream &os, const _Ty1 arg, const _Ty2... args)
 
 #pragma endregion
 
+#pragma region structure output
+
+// std::ostream &operator<<(std::ostream &os, const ObjType &obj)
+// {
+//     os << '{';
+//     os << "'member1': " << obj._member1 << ", ";
+//     os << "'member2': " << obj._member2 << ", ";
+//     os << "'member3': " << obj._member3 << ", ";
+//     os << "'member4': " << obj._member4;
+//     os << '}';
+//     return os;
+// }
+
+#pragma endregion
+
 int main(int argc, char const *argv[])
 {
     std::map<int, std::string> isMap({std::make_pair(0, "hello"),
