@@ -228,16 +228,15 @@ int main(int argc, char const *argv[])
     std::deque<int> iDeq({1, 2, 5, 7, 2, 6, 68});
     std::array<int, 7> iAry{1, 2, 5, 7, 2, 6, 68};
 
+    setSplitor(SplitorType::COMMA_ENDL_SPACE);
     std::cout << isMap << std::endl;
-    std::cout << iSet << std::endl;
-    std::cout << iVec << std::endl;
     setSplitor(SplitorType::SPACE_VL_SPACE);
-    std::cout << iLis << std::endl;
+    std::cout << iSet << std::endl;
     setSplitor(SplitorType::COMMA_SPACE);
-
+    std::cout << iVec << std::endl;
+    std::cout << iLis << std::endl;
     std::cout << iDeq << std::endl;
     std::cout << iAry << std::endl;
-    setSplitor(SplitorType::COMMA_ENDL_SPACE);
 
     multiOutput(std::cout, iAry, isMap, iAry);
 
