@@ -53,6 +53,11 @@
         "cerrno": "cpp",
         "cfloat": "cpp",
         "climits": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "unordered_set": "cpp",
+        "stack": "cpp",
+        "list": "cpp"
     }
 }
