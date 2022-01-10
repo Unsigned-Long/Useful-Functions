@@ -17,7 +17,28 @@
 /**
  * @brief the splitor [std::string]
  */
-static const std::string splitor(", ");
+static std::string splitor(", ");
+
+enum class SplitorType
+{
+    COMMA_SPACE,
+    COMMA_ENDL_SPACE,
+    SPACE_VL_SPACE
+};
+
+static const std::unordered_map<SplitorType, std::string> ssMap({{SplitorType::COMMA_SPACE, ", "},
+                                                                 {SplitorType::COMMA_ENDL_SPACE, ",\n "},
+                                                                 {SplitorType::SPACE_VL_SPACE, " | "}});
+
+void setSplitor(const std::string &sp)
+{
+    splitor = sp;
+}
+
+void setSplitor(SplitorType spType)
+{
+    splitor = ssMap.at(spType);
+}
 
 /**
  * @brief overload the operator '<<' for std::pair
@@ -169,6 +190,30 @@ std::ostream &operator<<(std::ostream &os, const std::array<Val, Size> &s)
 
 #pragma endregion
 
+#pragma region multi output
+
+std::ostream &multiOutput(std::ostream &os)
+{
+    return os;
+}
+
+template <typename _Ty>
+std::ostream &multiOutput(std::ostream &os, const _Ty &arg)
+{
+    os << arg << '\n';
+    return os;
+}
+
+template <typename _Ty1, typename... _Ty2>
+std::ostream &multiOutput(std::ostream &os, const _Ty1 arg, const _Ty2... args)
+{
+    os << arg << splitor;
+    multiOutput(os, args...);
+    return os;
+}
+
+#pragma endregion
+
 int main(int argc, char const *argv[])
 {
     std::map<int, std::string> isMap({std::make_pair(0, "hello"),
@@ -186,9 +231,15 @@ int main(int argc, char const *argv[])
     std::cout << isMap << std::endl;
     std::cout << iSet << std::endl;
     std::cout << iVec << std::endl;
+    setSplitor(SplitorType::SPACE_VL_SPACE);
     std::cout << iLis << std::endl;
+    setSplitor(SplitorType::COMMA_SPACE);
+
     std::cout << iDeq << std::endl;
     std::cout << iAry << std::endl;
+    setSplitor(SplitorType::COMMA_ENDL_SPACE);
+
+    multiOutput(std::cout, iAry, isMap, iAry);
 
     return 0;
 }
