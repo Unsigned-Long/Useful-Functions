@@ -23,6 +23,9 @@
 + linearTrans.cpp  
     线性归化函数  
 
++ macroLauncher.cpp
+    宏分布器，达到宏展开的目的
+
 + outputFormat.cpp  
     对输出的简单消息进行格式控制  
     

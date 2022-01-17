@@ -6,4 +6,4 @@ set(CMAKE_BUILD_TYPE "Release")
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(usefulFuns ./src_funs/containerOutput.cpp)
+add_executable(usefulFuns ./src_funs/macroLauncher.cpp)
