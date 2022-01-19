@@ -58,6 +58,11 @@
         "set": "cpp",
         "unordered_set": "cpp",
         "stack": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "bitset": "cpp",
+        "complex": "cpp",
+        "condition_variable": "cpp",
+        "mutex": "cpp",
+        "thread": "cpp"
     }
 }
