@@ -7,6 +7,7 @@ src_funs/
 ├── macroLauncher.cpp
 ├── outputFormat.cpp
 ├── readString.cpp
-└── stringSplitor.cpp
+├── stringSplitor.cpp
+└── structGenerator.cpp
 
-0 directories, 9 files
+0 directories, 10 files
