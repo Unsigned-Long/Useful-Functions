@@ -74,10 +74,10 @@ int main(int argc, char const *argv[])
 {
     if (argc < 3)
     {
-        std::cout << "This simple program is used to generate cpp 'struct' source code. Here is the usage:\n\n";
-        std::cout << "    StructName MemName1:MemType1 [MemName2:MemType2] ...\n\n";
-        std::cout << "Here is a example:\n\n";
-        std::cout << "    type './usefulFuns Info id:uint' will generate code:\n\n";
+        std::cout << "This simple program is used to generate cpp 'struct' source code.\n\n";
+        std::cout << "Usage: StructName MemName1:MemType1 [MemName2:MemType2] ...\n\n";
+        std::cout << "Here is an example:\n\n";
+        std::cout << "typing 'structGenerator Info id:uint' will generate code:\n\n";
         std::cout << "struct Info"
                      "\n{"
                      "\nprivate:"
