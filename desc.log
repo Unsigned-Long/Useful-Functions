@@ -8,6 +8,5 @@ src_funs/
 ├── outputFormat.cpp
 ├── readString.cpp
 ├── stringSplitor.cpp
-└── structGenerator.cpp
 
-0 directories, 10 files
+0 directories, 9 files

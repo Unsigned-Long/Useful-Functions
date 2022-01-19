@@ -35,6 +35,3 @@
 + stringSplitor.cpp  
     将字符串进行分割  
 
-+ structGenerator.cpp
-    自动生成C++ 结构体代码的程序
-
