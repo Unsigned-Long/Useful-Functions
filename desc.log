@@ -4,9 +4,10 @@ src_funs/
 ├── findKMins.cpp
 ├── formatValue.cpp
 ├── linearTrans.cpp
+├── macro.cpp
 ├── macroLauncher.cpp
 ├── outputFormat.cpp
 ├── readString.cpp
-├── stringSplitor.cpp
+└── stringSplitor.cpp
 
-0 directories, 9 files
+0 directories, 10 files

@@ -23,6 +23,9 @@
 + linearTrans.cpp  
     线性归化函数  
 
++ macro.cpp
+    基于cpp代码的宏定义重写
+
 + macroLauncher.cpp   
     宏分布器，达到宏展开的目的
 
