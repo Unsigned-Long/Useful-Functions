@@ -1,13 +1,12 @@
-src_funs/
+./src_funs/
 ├── containerOutput.cpp
 ├── filesInDir.cpp
 ├── findKMins.cpp
 ├── formatValue.cpp
 ├── linearTrans.cpp
-├── macro.cpp
 ├── macroLauncher.cpp
 ├── outputFormat.cpp
 ├── readString.cpp
 └── stringSplitor.cpp
 
-0 directories, 10 files
+0 directories, 9 files
