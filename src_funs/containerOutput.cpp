@@ -12,32 +12,41 @@
 #include <deque>
 #include <array>
 
+/**
+ * @brief output format for containers in the STL
+ * [1] std::pair
+ * [2] std::map std::multimap std::unordered_map std::unordered_multimap
+ * [3] std::set std::multiset std::unordered_set std::unordered_multiset
+ * [4] std::vector std::list std::deque std::array
+ * [5] struct
+ */
+
 #pragma region output for container
 
 /**
- * @brief the splitor [std::string]
+ * @brief params to control
+ * @param splitor the splitor to split the elements
+ * @param firName the describe name for the first element of the std::pair
+ * @param sedName the describe name for the second element of the std::pair
  */
 static std::string splitor(", ");
+static std::string firName("fir");
+static std::string sedName("sed");
 
-enum class SplitorType
-{
-    COMMA_SPACE,
-    COMMA_ENDL_SPACE,
-    SPACE_VL_SPACE
-};
-
-static const std::unordered_map<SplitorType, std::string> ssMap({{SplitorType::COMMA_SPACE, ", "},
-                                                                 {SplitorType::COMMA_ENDL_SPACE, ",\n "},
-                                                                 {SplitorType::SPACE_VL_SPACE, " | "}});
-
-void setSplitor(const std::string &sp)
+/**
+ * @brief Set the splitor
+ */
+static void setSplitor(const std::string &sp)
 {
     splitor = sp;
 }
 
-void setSplitor(SplitorType spType)
+/**
+ * @brief Set the firName and sedName
+ */
+static void setFirSedName(const std::string &firstName, const std::string &secondName)
 {
-    splitor = ssMap.at(spType);
+    firName = firstName, sedName = secondName;
 }
 
 /**
@@ -46,7 +55,7 @@ void setSplitor(SplitorType spType)
 template <typename Key, typename Val>
 std::ostream &operator<<(std::ostream &os, const std::pair<Key, Val> &p)
 {
-    os << "{'key': " << p.first << ", 'val': " << p.second << '}';
+    os << "{'" + firName + "': " << p.first << ", '" + sedName + "': " << p.second << '}';
     return os;
 }
 
@@ -190,30 +199,6 @@ std::ostream &operator<<(std::ostream &os, const std::array<Val, Size> &s)
 
 #pragma endregion
 
-#pragma region multi output
-
-std::ostream &multiOutput(std::ostream &os)
-{
-    return os;
-}
-
-template <typename _Ty>
-std::ostream &multiOutput(std::ostream &os, const _Ty &arg)
-{
-    os << arg << '\n';
-    return os;
-}
-
-template <typename _Ty1, typename... _Ty2>
-std::ostream &multiOutput(std::ostream &os, const _Ty1 arg, const _Ty2... args)
-{
-    os << arg << splitor;
-    multiOutput(os, args...);
-    return os;
-}
-
-#pragma endregion
-
 #pragma region structure output
 
 // std::ostream &operator<<(std::ostream &os, const ObjType &obj)
@@ -237,23 +222,18 @@ int main(int argc, char const *argv[])
                                       std::make_pair(4, "python")});
 
     std::set<int> iSet({1, 2, 5, 7, 2, 6, 68});
-
     std::vector<int> iVec({1, 2, 5, 7, 2, 6, 68});
     std::list<int> iLis({1, 2, 5, 7, 2, 6, 68});
     std::deque<int> iDeq({1, 2, 5, 7, 2, 6, 68});
     std::array<int, 7> iAry{1, 2, 5, 7, 2, 6, 68};
 
-    setSplitor(SplitorType::COMMA_ENDL_SPACE);
-    std::cout << isMap << std::endl;
-    setSplitor(SplitorType::SPACE_VL_SPACE);
-    std::cout << iSet << std::endl;
-    setSplitor(SplitorType::COMMA_SPACE);
-    std::cout << iVec << std::endl;
-    std::cout << iLis << std::endl;
-    std::cout << iDeq << std::endl;
-    std::cout << iAry << std::endl;
-
-    multiOutput(std::cout, iAry, isMap, iAry);
-
+    std::cout << "   Map: " << isMap << std::endl;
+    setFirSedName("intVal", "strVal");
+    std::cout << "   Map: " << isMap << std::endl;
+    std::cout << "   Set: " << iSet << std::endl;
+    std::cout << "Vector: " << iVec << std::endl;
+    std::cout << "  List: " << iLis << std::endl;
+    std::cout << " Deque: " << iDeq << std::endl;
+    std::cout << " Array: " << iAry << std::endl;
     return 0;
 }
