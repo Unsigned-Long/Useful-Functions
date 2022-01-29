@@ -1,25 +1,18 @@
 #include <iostream>
 #include <vector>
-#include <fstream>
+#include <filesystem>
 
 /**
  * \brief a function to get all the filenames in the directory
  * \param directory the directory 
- * \return the file names in the directory
+ * \return the filenames in the directory
  */
 std::vector<std::string> filesInDir(const std::string &directory)
 {
-    std::string command = "ls " + directory + "> ./.files.txt";
-    auto re = std::system(command.c_str());
-    std::fstream file("./.files.txt", std::ios::in);
-    std::string filename;
-    std::vector<std::string> filenames;
-    while (std::getline(file, filename))
-        filenames.push_back(directory + '/' + filename);
-    file.close();
-    command = "rm ./.files.txt";
-    re = std::system(command.c_str());
-    return filenames;
+    std::vector<std::string> files;
+    for (const auto &elem : std::filesystem::directory_iterator(directory))
+        files.push_back(std::filesystem::canonical(elem.path()).c_str());
+    return files;
 }
 
 int main(int argc, char const *argv[])
