@@ -12,6 +12,9 @@
 #include <deque>
 #include <array>
 
+#include <stack>
+#include <queue>
+
 /**
  * @brief output format for containers in the STL
  * [1] std::pair
@@ -66,6 +69,11 @@ template <typename ConType>
 std::ostream &outputCon(std::ostream &os, const ConType &s)
 {
     os << '[';
+    if (s.empty())
+    {
+        os << "(empty)]";
+        return os;
+    }
     auto iter = s.cbegin();
     for (; iter != (--s.cend()); ++iter)
         os << *iter << splitor;
@@ -197,6 +205,49 @@ std::ostream &operator<<(std::ostream &os, const std::array<Val, Size> &s)
     return os;
 }
 
+/**
+ * @brief overload the operator '<<' for std::stack
+ */
+template <typename Val>
+std::ostream &operator<<(std::ostream &os, const std::stack<Val> &s)
+{
+    if (s.empty())
+    {
+        os << "[(empty)]";
+        return os;
+    }
+    os << "[(top) ";
+    auto cs = s;
+    while (cs.size() != 1)
+    {
+        os << cs.top() << splitor;
+        cs.pop();
+    }
+    os << cs.top() << "]";
+    return os;
+}
+
+/**
+ * @brief overload the operator '<<' for std::queue
+ */
+template <typename Val>
+std::ostream &operator<<(std::ostream &os, const std::queue<Val> &q)
+{
+    if (q.empty())
+    {
+        os << "[(empty)]";
+        return os;
+    }
+    os << "[(front) ";
+    auto cq = q;
+    while (cq.size() != 1)
+    {
+        os << cq.front() << splitor;
+        cq.pop();
+    }
+    os << cq.front() << "]";
+    return os;
+}
 #pragma endregion
 
 #pragma region structure output
@@ -232,8 +283,21 @@ int main(int argc, char const *argv[])
     std::cout << "   Map: " << isMap << std::endl;
     std::cout << "   Set: " << iSet << std::endl;
     std::cout << "Vector: " << iVec << std::endl;
+    std::cout << "Vector: " << std::vector<int>() << std::endl;
     std::cout << "  List: " << iLis << std::endl;
     std::cout << " Deque: " << iDeq << std::endl;
     std::cout << " Array: " << iAry << std::endl;
+
+    std::stack<int> sta;
+    std::cout << " stack: " << sta << std::endl;
+    sta.push(1), sta.push(4), sta.push(7), sta.push(3);
+    std::cout << " stack: " << sta << std::endl;
+
+    std::queue<int> que;
+    que.push(1), que.push(4), que.push(7);
+    std::cout << " queue: " << que << std::endl;
+
+    que.push(3);
+    std::cout << " queue: " << que << std::endl;
     return 0;
 }
