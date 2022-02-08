@@ -63,6 +63,8 @@
         "complex": "cpp",
         "condition_variable": "cpp",
         "mutex": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "strstream": "cpp",
+        "codecvt": "cpp"
     }
 }
