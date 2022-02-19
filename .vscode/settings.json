@@ -65,6 +65,9 @@
         "mutex": "cpp",
         "thread": "cpp",
         "strstream": "cpp",
-        "codecvt": "cpp"
+        "codecvt": "cpp",
+        "cfenv": "cpp",
+        "typeindex": "cpp",
+        "variant": "cpp"
     }
 }

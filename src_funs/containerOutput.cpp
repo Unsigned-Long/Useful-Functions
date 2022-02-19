@@ -30,30 +30,14 @@
  * @param firName the describe name for the first element of the std::pair
  * @param sedName the describe name for the second element of the std::pair
  */
-static std::string splitor(", ");
-static std::string firName("fir");
-static std::string sedName("sed");
-
-/**
- * @brief Set the splitor
- */
-static void setSplitor(const std::string &sp) { splitor = sp; }
-
-/**
- * @brief Set the firName and sedName
- */
-static void setFirSedName(const std::string &firstName,
-                          const std::string &secondName) {
-  firName = firstName, sedName = secondName;
-}
+static const std::string splitor(", ");
 
 /**
  * @brief overload the operator '<<' for std::pair
  */
 template <typename Key, typename Val>
 std::ostream &operator<<(std::ostream &os, const std::pair<Key, Val> &p) {
-  os << "{'" + firName + "': " << p.first << ", '" + sedName + "': " << p.second
-     << '}';
+  os << "{'" << p.first << "': " << p.second << '}';
   return os;
 }
 
@@ -64,11 +48,12 @@ template <typename ConType>
 std::ostream &orderedConer(std::ostream &os, const ConType &c) {
   os << '[';
   if (c.empty()) {
-    os << "(empty)]";
+    os << "'empty']";
     return os;
   }
   auto iter = c.cbegin();
-  for (; iter != (--c.cend()); ++iter) os << *iter << splitor;
+  for (; iter != (--c.cend()); ++iter)
+    os << *iter << splitor;
   os << *iter << ']';
   return os;
 }
@@ -80,11 +65,12 @@ template <typename ConType>
 std::ostream &unorderedConer(std::ostream &os, const ConType &c) {
   os << '[';
   if (c.empty()) {
-    os << "(empty)]";
+    os << "'empty']";
     return os;
   }
   std::stringstream stream;
-  for (const auto &elem : c) stream << elem << splitor;
+  for (const auto &elem : c)
+    stream << elem << splitor;
   std::string str = stream.str();
   os << std::string_view(str.c_str(), str.size() - splitor.size()) << ']';
   return os;
@@ -199,7 +185,8 @@ std::ostream &operator<<(std::ostream &os, const std::deque<Val> &s) {
 template <typename Val, std::size_t Size>
 std::ostream &operator<<(std::ostream &os, const std::array<Val, Size> &s) {
   os << '[';
-  for (int i = 0; i != s.size() - 1; ++i) os << s[i] << splitor;
+  for (int i = 0; i != s.size() - 1; ++i)
+    os << s[i] << splitor;
   os << s.back() << ']';
   return os;
 }
@@ -210,10 +197,10 @@ std::ostream &operator<<(std::ostream &os, const std::array<Val, Size> &s) {
 template <typename Val>
 std::ostream &operator<<(std::ostream &os, const std::stack<Val> &s) {
   if (s.empty()) {
-    os << "[(empty)]";
+    os << "['empty']";
     return os;
   }
-  os << "[(top) ";
+  os << "['top' ";
   auto cs = s;
   while (cs.size() != 1) {
     os << cs.top() << splitor;
@@ -229,10 +216,10 @@ std::ostream &operator<<(std::ostream &os, const std::stack<Val> &s) {
 template <typename Val>
 std::ostream &operator<<(std::ostream &os, const std::queue<Val> &q) {
   if (q.empty()) {
-    os << "[(empty)]";
+    os << "['empty']";
     return os;
   }
-  os << "[(front) ";
+  os << "['front' ";
   auto cq = q;
   while (cq.size() != 1) {
     os << cq.front() << splitor;
@@ -241,21 +228,6 @@ std::ostream &operator<<(std::ostream &os, const std::queue<Val> &q) {
   os << cq.front() << "]";
   return os;
 }
-#pragma endregion
-
-#pragma region structure output
-
-// std::ostream &operator<<(std::ostream &os, const ObjType &obj)
-// {
-//     os << '{';
-//     os << "'member1': " << obj._member1 << ", ";
-//     os << "'member2': " << obj._member2 << ", ";
-//     os << "'member3': " << obj._member3 << ", ";
-//     os << "'member4': " << obj._member4;
-//     os << '}';
-//     return os;
-// }
-
 #pragma endregion
 
 int main(int argc, char const *argv[]) {
@@ -271,8 +243,6 @@ int main(int argc, char const *argv[]) {
   std::deque<int> iDeq({1, 2, 5, 7, 2, 6, 68});
   std::array<int, 7> iAry{1, 2, 5, 7, 2, 6, 68};
 
-  std::cout << "   Map: " << isMap << std::endl;
-  setFirSedName("intVal", "strVal");
   std::cout << "   Map: " << isMap << std::endl;
   std::cout << "   Set: " << iSet << std::endl;
   std::cout << "Vector: " << iVec << std::endl;
