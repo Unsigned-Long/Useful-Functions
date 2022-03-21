@@ -8,4 +8,4 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
-add_executable(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/src/julian.cpp)
+add_executable(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/src/coordinate.cpp)
