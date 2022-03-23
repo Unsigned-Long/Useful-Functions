@@ -3,7 +3,7 @@
 #include <tuple>
 
 double julianDay(std::size_t year, std::size_t month, std::size_t day,
-                 std::size_t hour = 0, std::size_t minute = 0, double second = 0) {
+                 std::size_t hour = 0, std::size_t minute = 0, double second = 0.0) {
   return 1721013.5 +
          367.0 * year -
          int(7.0 / 4.0 * (year + int((month + 9.0) / 12.0))) +
@@ -13,7 +13,7 @@ double julianDay(std::size_t year, std::size_t month, std::size_t day,
 }
 
 double modJulianDay(std::size_t year, std::size_t month, std::size_t day,
-                    std::size_t hour = 0, std::size_t minute = 0, double second = 0) {
+                    std::size_t hour = 0, std::size_t minute = 0, double second = 0.0) {
   return julianDay(year, month, day, hour, minute, second) - 2400000.5;
 }
 
