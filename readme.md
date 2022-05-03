@@ -40,3 +40,6 @@ Although this project is not as good as other large projects, it provides some f
     
 + sampling.cpp
     抽样（有放回、无放回）
+    
++ libmacroes.cpp
+    定义了一些常用的宏
