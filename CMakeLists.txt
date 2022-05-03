@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
-add_executable(${CMAKE_PROJECT_NAME} ${CMAKE_SOURCE_DIR}/src/sampling.cpp)
+add_executable(${CMAKE_PROJECT_NAME} ${CMAKE_SOURCE_DIR}/src/libmacroes.cpp)
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${FMT_INCLUDE_DIRS})
 
