@@ -14,22 +14,19 @@
 #define MC_SUFFIX ""
 
 // throw some information about current error [detail version]
-#define MC_THROW_D(what)                                                   \
+#define MC_THROW_M(what)                                                   \
   throw std::runtime_error(                                                \
-      std::string("[ error from '") + MC_LIB_NAME + "' ]-[ '" +            \
+      std::string("[ ERROR | '") + MC_LIB_NAME + "':'" +                   \
       std::string(__FILE__).substr(std::string(__FILE__).rfind('/') + 1) + \
       "':'" + std::to_string(__LINE__) + "':'" + MC_FUNCTION_DESC +        \
       "' ] " + what);
 
 // throw some information about current error [simple version]
-#define MC_THROW_S(what)                                                   \
-  throw std::runtime_error(                                                \
-      std::string("[ error from '") + MC_LIB_NAME + "' ]-[ '" +            \
-      std::string(__FILE__).substr(std::string(__FILE__).rfind('/') + 1) + \
-      "':'" + std::to_string(__LINE__) +                                   \
+#define MC_THROW(what)                                   \
+  throw std::runtime_error(                              \
+      std::string("[ ERROR | '") + MC_LIB_NAME + "':'" + \
+      MC_FUNCTION_DESC +                                 \
       "' ] " + what);
-
-#define MC_THROW(what) MC_THROW_S(what)
 
 // a macro launcher
 #define MACRO_VAR_ARGS_IMPL_COUNT(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, N, ...) N
@@ -69,15 +66,15 @@ int main(int argc, char const *argv[]) {
     const int count = 10;
     const std::string author{"shlchen"};
     const std::string email{"3079625093@qq.com"};
-    
+
     MC_VAR(pi, count);
     MC_VAR(author, email);
 
-    MC_THROW_S("this is an exception with \"simple output\"");
+    MC_THROW("this is an exception with \"simple output\"");
   } catch (const std::exception &e) {
     std::cerr << e.what() << '\n';
     try {
-      MC_THROW_D("this is an exception with \"detail output\"");
+      MC_THROW_M("this is an exception with \"detail output\"");
     } catch (const std::exception &e) {
       std::cerr << e.what() << '\n';
     }
