@@ -8,13 +8,18 @@
  * @brief sampling the amples without replacement
  *
  * @param num the num of the samples to sampling
+ * @param engine the random engine
  * @param start the start index
  * @param end the end index
  * @param step the step
  * @attention range: [start, end](step) i.e. for [1, 5](2) -> pool: {1, 3, 5}
  * @return std::vector<std::size_t>
  */
-std::vector<std::size_t> samplingWoutReplace(std::size_t num, std::size_t start, std::size_t end, std::size_t step = 1) {
+std::vector<std::size_t> samplingWoutReplace(std::default_random_engine engine,
+                                             std::size_t num,
+                                             std::size_t start,
+                                             std::size_t end,
+                                             std::size_t step = 1) {
   // create the pool for sampling
   std::vector<std::size_t> idxPool((end - start) / step + 1);
   for (int i = 0; i != idxPool.size(); ++i) {
@@ -22,7 +27,6 @@ std::vector<std::size_t> samplingWoutReplace(std::size_t num, std::size_t start,
   }
   std::vector<std::size_t> res(num);
   // the engine
-  std::default_random_engine engine;
   for (std::size_t i = 0; i != num; ++i) {
     // generate the random index
     std::uniform_int_distribution<std::size_t> ui(0, idxPool.size() - 1);
@@ -40,26 +44,32 @@ std::vector<std::size_t> samplingWoutReplace(std::size_t num, std::size_t start,
  * @brief sampling the amples without replacement
  *
  * @tparam ElemType the element type
+ * @param engine the random engine
  * @param dataVec the data vector
  * @param num the num of the samples to sampling
  * @return std::vector<std::size_t>
  */
 template <typename ElemType>
-std::vector<std::size_t> samplingWoutReplace(const std::vector<ElemType> &dataVec, std::size_t num) {
-  return samplingWoutReplace(num, 0, dataVec.size() - 1, 1);
+std::vector<std::size_t> samplingWoutReplace(std::default_random_engine engine,
+                                             const std::vector<ElemType> &dataVec,
+                                             std::size_t num) {
+  return samplingWoutReplace(engine, num, 0, dataVec.size() - 1, 1);
 }
 
 /**
  * @brief sampling the amples without replacement
  *
  * @tparam ElemType the element type
+ * @param engine the random engine
  * @param dataVec the data vector
  * @param num the num of the samples to sampling
  * @return std::vector<ElemType>
  */
 template <typename ElemType>
-std::vector<ElemType> samplingWoutReplace2(const std::vector<ElemType> &dataVec, std::size_t num) {
-  std::vector<std::size_t> res = samplingWoutReplace(dataVec, num);
+std::vector<ElemType> samplingWoutReplace2(std::default_random_engine engine,
+                                           const std::vector<ElemType> &dataVec,
+                                           std::size_t num) {
+  std::vector<std::size_t> res = samplingWoutReplace(engine, dataVec, num);
   std::vector<ElemType> samples(num);
   for (int i = 0; i != num; ++i) {
     samples.at(i) = dataVec.at(res.at(i));
@@ -70,6 +80,7 @@ std::vector<ElemType> samplingWoutReplace2(const std::vector<ElemType> &dataVec,
 /**
  * @brief sampling the amples with replacement
  *
+ * @param engine the random engine
  * @param num the num of the samples to sampling
  * @param start the start index
  * @param end the end index
@@ -77,7 +88,11 @@ std::vector<ElemType> samplingWoutReplace2(const std::vector<ElemType> &dataVec,
  * @attention range: [start, end](step) i.e. for [1, 5](2) -> pool: {1, 3, 5}
  * @return std::vector<std::size_t>
  */
-std::vector<std::size_t> samplingWithReplace(std::size_t num, std::size_t start, std::size_t end, std::size_t step = 1) {
+std::vector<std::size_t> samplingWithReplace(std::default_random_engine engine,
+                                             std::size_t num,
+                                             std::size_t start,
+                                             std::size_t end,
+                                             std::size_t step = 1) {
   // create the pool for sampling
   std::vector<std::size_t> idxPool((end - start) / step + 1);
   for (int i = 0; i != idxPool.size(); ++i) {
@@ -85,7 +100,6 @@ std::vector<std::size_t> samplingWithReplace(std::size_t num, std::size_t start,
   }
   std::vector<std::size_t> res(num);
   // the engine
-  std::default_random_engine engine;
   std::uniform_int_distribution<std::size_t> ui(0, idxPool.size() - 1);
   for (std::size_t i = 0; i != num; ++i) {
     // generate the random index
@@ -100,26 +114,32 @@ std::vector<std::size_t> samplingWithReplace(std::size_t num, std::size_t start,
  * @brief sampling the amples with replacement
  *
  * @tparam ElemType the element type
+ * @param engine the random engine
  * @param dataVec the data vector
  * @param num the num of the samples to sampling
  * @return std::vector<std::size_t>
  */
 template <typename ElemType>
-std::vector<std::size_t> samplingWithReplace(const std::vector<ElemType> &dataVec, std::size_t num) {
-  return samplingWithReplace(num, 0, dataVec.size() - 1, 1);
+std::vector<std::size_t> samplingWithReplace(std::default_random_engine engine,
+                                             const std::vector<ElemType> &dataVec,
+                                             std::size_t num) {
+  return samplingWithReplace(engine, num, 0, dataVec.size() - 1, 1);
 }
 
 /**
  * @brief sampling the amples with replacement
  *
  * @tparam ElemType the element type
+ * @param engine the random engine
  * @param dataVec the data vector
  * @param num the num of the samples to sampling
  * @return std::vector<ElemType>
  */
 template <typename ElemType>
-std::vector<ElemType> samplingWithReplace2(const std::vector<ElemType> &dataVec, std::size_t num) {
-  std::vector<std::size_t> res = samplingWithReplace(dataVec, num);
+std::vector<ElemType> samplingWithReplace2(std::default_random_engine engine,
+                                           const std::vector<ElemType> &dataVec,
+                                           std::size_t num) {
+  std::vector<std::size_t> res = samplingWithReplace(engine, dataVec, num);
   std::vector<ElemType> samples(num);
   for (int i = 0; i != num; ++i) {
     samples.at(i) = dataVec.at(res.at(i));
@@ -128,15 +148,16 @@ std::vector<ElemType> samplingWithReplace2(const std::vector<ElemType> &dataVec,
 }
 
 int main(int argc, char const *argv[]) {
+  std::default_random_engine engine;
   std::vector<std::string> names{"Tom", "Jerry", "marry", "Joe", "Bob", "Alice"};
   std::cout << "raw data: " << names << std::endl;
   std::cout << "we want to sample 4 people." << std::endl;
   {
-    auto res = ::samplingWoutReplace2(names, 4);
+    auto res = ::samplingWoutReplace2(engine, names, 4);
     std::cout << "Sampling Without Replacement: " << res << std::endl;
   }
   {
-    auto res = ::samplingWithReplace2(names, 4);
+    auto res = ::samplingWithReplace2(engine, names, 4);
     std::cout << "Sampling With Replacement: " << res << std::endl;
   }
   return 0;
