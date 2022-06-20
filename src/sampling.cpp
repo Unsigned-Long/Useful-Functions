@@ -15,7 +15,7 @@
  * @attention range: [start, end](step) i.e. for [1, 5](2) -> pool: {1, 3, 5}
  * @return std::vector<std::size_t>
  */
-std::vector<std::size_t> samplingWoutReplace(std::default_random_engine engine,
+std::vector<std::size_t> samplingWoutReplace(std::default_random_engine &engine,
                                              std::size_t num,
                                              std::size_t start,
                                              std::size_t end,
@@ -50,7 +50,7 @@ std::vector<std::size_t> samplingWoutReplace(std::default_random_engine engine,
  * @return std::vector<std::size_t>
  */
 template <typename ElemType>
-std::vector<std::size_t> samplingWoutReplace(std::default_random_engine engine,
+std::vector<std::size_t> samplingWoutReplace(std::default_random_engine &engine,
                                              const std::vector<ElemType> &dataVec,
                                              std::size_t num) {
   return samplingWoutReplace(engine, num, 0, dataVec.size() - 1, 1);
@@ -66,7 +66,7 @@ std::vector<std::size_t> samplingWoutReplace(std::default_random_engine engine,
  * @return std::vector<ElemType>
  */
 template <typename ElemType>
-std::vector<ElemType> samplingWoutReplace2(std::default_random_engine engine,
+std::vector<ElemType> samplingWoutReplace2(std::default_random_engine &engine,
                                            const std::vector<ElemType> &dataVec,
                                            std::size_t num) {
   std::vector<std::size_t> res = samplingWoutReplace(engine, dataVec, num);
@@ -88,7 +88,7 @@ std::vector<ElemType> samplingWoutReplace2(std::default_random_engine engine,
  * @attention range: [start, end](step) i.e. for [1, 5](2) -> pool: {1, 3, 5}
  * @return std::vector<std::size_t>
  */
-std::vector<std::size_t> samplingWithReplace(std::default_random_engine engine,
+std::vector<std::size_t> samplingWithReplace(std::default_random_engine &engine,
                                              std::size_t num,
                                              std::size_t start,
                                              std::size_t end,
@@ -120,7 +120,7 @@ std::vector<std::size_t> samplingWithReplace(std::default_random_engine engine,
  * @return std::vector<std::size_t>
  */
 template <typename ElemType>
-std::vector<std::size_t> samplingWithReplace(std::default_random_engine engine,
+std::vector<std::size_t> samplingWithReplace(std::default_random_engine &engine,
                                              const std::vector<ElemType> &dataVec,
                                              std::size_t num) {
   return samplingWithReplace(engine, num, 0, dataVec.size() - 1, 1);
@@ -136,7 +136,7 @@ std::vector<std::size_t> samplingWithReplace(std::default_random_engine engine,
  * @return std::vector<ElemType>
  */
 template <typename ElemType>
-std::vector<ElemType> samplingWithReplace2(std::default_random_engine engine,
+std::vector<ElemType> samplingWithReplace2(std::default_random_engine &engine,
                                            const std::vector<ElemType> &dataVec,
                                            std::size_t num) {
   std::vector<std::size_t> res = samplingWithReplace(engine, dataVec, num);
