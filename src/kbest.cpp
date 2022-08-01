@@ -14,8 +14,29 @@
  * @param comp the compare function
  * @return std::vector<std::size_t> the k best elements
  */
-template <typename Ty, typename Comp>
-std::vector<std::size_t> kBest(const std::vector<Ty> &vec, std::size_t k, Comp comp) {
+template <typename ElemType, typename Comp>
+std::vector<std::size_t> kBest(const std::vector<ElemType> &vec, std::size_t k, Comp comp) {
+  auto insertPos = [&vec, &comp](const std::vector<std::size_t> &idxAry, const ElemType &tarVal) {
+    int low = 0, high = idxAry.size() - 1, p;
+    while (true) {
+      int mid = (low + high) / 2;
+      const ElemType &midVal = vec[idxAry[mid]];
+      if (comp(tarVal, midVal)) {
+        high = mid - 1;
+      } else if (comp(midVal, tarVal)) {
+        low = mid + 1;
+      } else {
+        p = mid;
+        break;
+      }
+      if (low > high) {
+        p = low;
+        break;
+      }
+    }
+    return p;
+  };
+
   // init the best k vector
   std::vector<std::size_t> bestVec(k);
   for (int i = 0; i != k; ++i) {
@@ -28,12 +49,7 @@ std::vector<std::size_t> kBest(const std::vector<Ty> &vec, std::size_t k, Comp c
   for (int i = bestVec.size(); i != vec.size(); ++i) {
     const auto &curElem = vec[i];
     // find cur element pos in the best vector
-    std::size_t p = 0;
-    for (; p != bestVec.size(); ++p) {
-      if (comp(curElem, vec[bestVec[p]])) {
-        break;
-      }
-    }
+    std::size_t p = insertPos(bestVec, curElem);
     if (p == bestVec.size()) {
       continue;
     }
@@ -49,7 +65,7 @@ std::vector<std::size_t> kBest(const std::vector<Ty> &vec, std::size_t k, Comp c
 int main(int argc, char const *argv[]) {
   {
     std::vector<int> vec{1, 4, 2, 5, 8, 3, 6, 9, 2, 10};
-    auto best = kBest(vec, 4, [](int i1, int i2) {
+    auto best = kBest(vec, 6, [](int i1, int i2) {
       return i1 > i2;
     });
     for (const auto &i : best) {
@@ -58,7 +74,7 @@ int main(int argc, char const *argv[]) {
   }
   {
     ns_timer::Timer timer;
-    std::vector<float> vec(1000000);
+    std::vector<float> vec(1000);
     std::default_random_engine e;
     std::uniform_real_distribution<> u(0.0, 100.0);
     for (int i = 0; i != vec.size(); ++i) {
@@ -69,15 +85,15 @@ int main(int argc, char const *argv[]) {
       return i1 > i2;
     });
     LOG_VAR(timer.last_elapsed("kBest"));
-    for (const auto &i : best) {
-      LOG_VAR(vec[i]);
-    }
+    // for (const auto &i : best) {
+    //   LOG_VAR(vec[i]);
+    // }
     timer.re_start();
     std::sort(vec.begin(), vec.end(), [](float i1, float i2) { return i1 > i2; });
     LOG_VAR(timer.last_elapsed("sort"));
-    for (int i = 0; i != best.size(); ++i) {
-      LOG_VAR(vec[i]);
-    }
+    // for (int i = 0; i != best.size(); ++i) {
+    //   LOG_VAR(vec[i]);
+    // }
   }
   return 0;
 }
