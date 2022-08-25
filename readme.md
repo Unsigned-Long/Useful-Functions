@@ -10,36 +10,31 @@ Although this project is not as good as other large projects, it provides some f
 
 + outputformat.cpp   
     容器输出格式化，包含对 {'map+', 'set+', 'pair', 'vector', 'list', 'deque', 'array'} 的格式化输出  
-
 + listfiles.cpp  
     得到指定路径下的所有文件名  
-
 + floatformat.cpp  
     对浮点数和双精度小数进行小数位数的保留输出  
-
 + lineartrans.cpp  
     线性归化函数  
-    
 + macrolauncher.cpp   
     宏分布器，达到宏展开的目的
-
 + consolelog.cpp  
     对输出的简单消息进行格式控制  
-    
 + readfilestring.cpp  
     一次读取一个文件中的所用字符，用于json文件读取  
-    
 + stringsplitor.cpp  
     将字符串进行分割  
-
 + julian.cpp
     儒历日转换
-
 + coordinate.cpp
     大地测量参考椭球及其坐标转换
-    
 + sampling.cpp
     抽样（有放回、无放回）
-    
 + libmacroes.cpp
     定义了一些常用的宏
++ bytes.cpp
+    字节和常规数据类型之间的转换
++ kbest.cpp
+    在一个数组中找到最符合的k个数据项
++ lagrange
+    拉格朗日插值法
