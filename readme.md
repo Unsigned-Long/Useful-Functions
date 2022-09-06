@@ -38,3 +38,5 @@ Although this project is not as good as other large projects, it provides some f
     在一个数组中找到最符合的k个数据项
 + lagrange
     拉格朗日插值法
++ trim
+  字符串修整函数
