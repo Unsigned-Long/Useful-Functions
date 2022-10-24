@@ -77,7 +77,7 @@ std::tuple<double, double, double> XYZ2BLH(const RefEllipsoid &ellipsoid, double
 }
 
 int main(int argc, char const *argv[]) {
-  std::cout << std::fixed << std::setprecision(3);
+  std::cout << std::fixed << std::setprecision(15);
   auto [X, Y, Z] = BLH2XYZ(WGS1984,
                            ns_angle::Angle::make_pangle(30, 14, 56.6),
                            ns_angle::Angle::make_pangle(120, 44, 23.2),

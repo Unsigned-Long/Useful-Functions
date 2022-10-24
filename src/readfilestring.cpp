@@ -7,7 +7,7 @@
  * \param file the opened oouput file stream reference
  * \return the char string in the file
  */
-std::string readString(std::fstream &file)
+std::string readString(std::ifstream &file)
 {
     if (!file.is_open())
         throw std::runtime_error("file open failed in 'std::string readString(std::fstream &file)'");
@@ -21,7 +21,7 @@ std::string readString(std::fstream &file)
 
 int main(int argc, char const *argv[])
 {
-    std::fstream file("../.vscode/c_cpp_properties.json", std::ios::in);
+    std::ifstream file("../.vscode/c_cpp_properties.json", std::ios::in);
     std::cout << readString(file) << std::endl;
     file.close();
     return 0;
