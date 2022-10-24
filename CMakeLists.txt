@@ -8,5 +8,5 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
-add_executable(${CMAKE_PROJECT_NAME} src/trim.cpp)
+add_executable(${CMAKE_PROJECT_NAME} src/coordinate.cpp)
 
