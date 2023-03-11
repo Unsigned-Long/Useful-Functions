@@ -5,17 +5,17 @@ from mpl_toolkits.axes_grid1 import host_subplot
 
 config = {
     # "text.usetex": True,
-    "font.family": 'serif',  # sans-serif/serif/cursive/fantasy/monospace
+    "font.family": 'Ubuntu Mono',  # sans-serif/serif/cursive/fantasy/monospace
     "font.size": 14.0,  # medium/large/small
-    'font.style': 'normal',  # normal/italic/oblique
+    'font.style': 'italic',  # normal/italic/oblique
     'font.weight': 'normal',  # bold
     "mathtext.fontset": 'cm',
     "font.serif": ['cmb10'],
     "axes.unicode_minus": False,
+    'figure.figsize': (12.0, 4.0)
 }
 
 plt.rcParams.update(config)
-plt.rcParams['figure.figsize'] = (12.0, 4.0)
 
 
 class drawer:
@@ -108,6 +108,8 @@ class drawer:
 
 
 if __name__ == '__main__':
+    # plt.rcParams['figure.figsize'] = (12.0, 4.0)
+
     host = host_subplot(121)
 
     twin = host.twinx()
