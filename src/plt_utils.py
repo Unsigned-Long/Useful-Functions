@@ -12,7 +12,6 @@ config = {
     "mathtext.fontset": 'cm',
     "font.serif": ['cmb10'],
     "axes.unicode_minus": False,
-    'figure.figsize': (12.0, 4.0)
 }
 
 plt.rcParams.update(config)
@@ -26,6 +25,10 @@ class drawer:
         if save_path is not None:
             plt.savefig(save_path)
         plt.show()
+
+    @staticmethod
+    def set_fig_size(width, height):
+        plt.rcParams['figure.figsize'] = (width, height)
 
     @staticmethod
     def math_symbols(s: str):
@@ -108,7 +111,7 @@ class drawer:
 
 
 if __name__ == '__main__':
-    # plt.rcParams['figure.figsize'] = (12.0, 4.0)
+    drawer.set_fig_size(12.0, 4.0)
 
     host = host_subplot(121)
 
