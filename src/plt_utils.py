@@ -45,8 +45,8 @@ class drawer:
         ax.set_ylim(ymin, ymax)
 
     @staticmethod
-    def add_grids(ax, alpha=0.5):
-        ax.grid(ls='-.', alpha=alpha)
+    def add_grids(ax, alpha=0.5, axis='both'):
+        ax.grid(ls='-.', alpha=alpha, axis=axis)
 
     @staticmethod
     def set_label_decimal(ax, format_str, axis='y'):
