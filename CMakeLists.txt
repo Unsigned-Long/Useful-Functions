@@ -12,5 +12,9 @@ find_package(Eigen3 REQUIRED)
 
 include_directories(${EIGEN_INCLUDE_DIRS})
 
-add_executable(${CMAKE_PROJECT_NAME} src/trap_integration.cpp)
+add_executable(${CMAKE_PROJECT_NAME} src/timer.cpp)
 
+target_link_libraries(
+        ${CMAKE_PROJECT_NAME} PRIVATE
+        pthread
+)
