@@ -2,6 +2,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 import matplotlib.ticker as mtick
 from mpl_toolkits.axes_grid1 import host_subplot
+from matplotlib.patches import Rectangle
 
 config = {
     # "text.usetex": True,
@@ -109,6 +110,13 @@ class drawer:
         elif axis == 'x':
             ax.xaxis.get_label().set_color(color)
 
+    @staticmethod
+    def erase_ax(ax, style_idx=1):
+        ax.set_yticks([])
+        x_min, x_max = ax.get_xlim()
+        hatches = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*']
+        ax.add_patch(Rectangle((x_min, 0), x_max - x_min, 1, fill=False, hatch=hatches[1]))
+
 
 if __name__ == '__main__':
     drawer.set_fig_size(12.0, 4.0)
@@ -144,4 +152,7 @@ if __name__ == '__main__':
     drawer.set_label_decimal(host, '%.1f', axis='x')
 
     drawer.set_legend_top(host, 2)
+
+    drawer.erase_ax(host_subplot(122))
+
     drawer.show_figure()
