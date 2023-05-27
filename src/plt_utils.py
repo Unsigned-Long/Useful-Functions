@@ -3,6 +3,8 @@ from matplotlib import pyplot as plt
 import matplotlib.ticker as mtick
 from mpl_toolkits.axes_grid1 import host_subplot
 from matplotlib.patches import Rectangle
+import math
+import matplotlib.path as mpath
 
 config = {
     # "text.usetex": True,
@@ -46,8 +48,37 @@ class drawer:
         ax.set_ylim(ymin, ymax)
 
     @staticmethod
+    def set_zticks(ax, zmin, zmax, tick_count):
+        ax.set_zticks(np.arange(zmin, zmax + 1E-10, (zmax - zmin) / tick_count))
+        ax.set_zlim(zmin, zmax)
+
+    @staticmethod
     def add_grids(ax, alpha=0.5, axis='both'):
         ax.grid(ls='-.', alpha=alpha, axis=axis)
+
+    @staticmethod
+    def add_grids_3d(ax, alpha=0.5):
+        ax.xaxis._axinfo["grid"]['linestyle'] = "-."
+        ax.yaxis._axinfo["grid"]['linestyle'] = "-."
+        ax.zaxis._axinfo["grid"]['linestyle'] = "-."
+
+        ax.xaxis._axinfo["grid"]['alpha'] = alpha
+        ax.yaxis._axinfo["grid"]['alpha'] = alpha
+        ax.zaxis._axinfo["grid"]['alpha'] = alpha
+
+    @staticmethod
+    def add_coordinate(ax, x, y, z, arrow_length=1, line_width=3, mark_size=5, marker='8'):
+        # draw x, y, z axis
+        ax.plot([x, x + arrow_length], [y, y], [z, z], linestyle='-', ms=mark_size, marker=marker, c='red',
+                lw=line_width)
+
+        ax.plot([x, x], [y, y + arrow_length], [z, z], linestyle='-', ms=mark_size, marker=marker, c='green',
+                lw=line_width)
+
+        ax.plot([x, x], [y, y], [z, z + arrow_length], linestyle='-', ms=mark_size, marker=marker, c='blue',
+                lw=line_width)
+
+        ax.plot([x], [y], [z], linestyle='-', ms=mark_size, marker=marker, c='black', lw=line_width)
 
     @staticmethod
     def set_label_decimal(ax, format_str, axis='y'):
@@ -55,6 +86,8 @@ class drawer:
             ax.yaxis.set_major_formatter(mtick.FormatStrFormatter(format_str))
         elif axis == 'x':
             ax.xaxis.set_major_formatter(mtick.FormatStrFormatter(format_str))
+        elif axis == 'z':
+            ax.zaxis.set_major_formatter(mtick.FormatStrFormatter(format_str))
 
     @staticmethod
     def set_legend_top(ax, cols):
@@ -100,6 +133,16 @@ class drawer:
             style for style in plt.style.available if style != 'classic' and not style.startswith('_')
         )
         plt.style.use(styles[idx])
+
+    @staticmethod
+    def landmark_marker():
+        s1 = [[-1, 0], [0, 0], [1, 0]]
+        s2 = [[0, -1], [0, 0], [0, 1]]
+        s3 = [[-math.sqrt(2) / 2, -math.sqrt(2) / 2], [0, 0], [math.sqrt(2) / 2, math.sqrt(2) / 2]]
+        s4 = [[math.sqrt(2) / 2, -math.sqrt(2) / 2], [0, 0], [-math.sqrt(2) / 2, math.sqrt(2) / 2]]
+        c = [1, 2, 2]
+        marker = mpath.Path(vertices=np.concatenate([s1, s2, s3, s4]), codes=np.concatenate([c, c, c, c]))
+        return marker
 
     @staticmethod
     def set_axis_label_color(ax, color, axis='y'):
